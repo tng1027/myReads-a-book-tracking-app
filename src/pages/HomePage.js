@@ -35,7 +35,7 @@ export const HomePage = () => {
     }
 
     return (<>
-        {Object.keys(listBookshelf).map((key) => <Bookshelf title={ShelfTypes[key]} bookshelf={listBookshelf[key]} onBookChange={() => onBookChange()} />)}
+        {Object.keys(listBookshelf).map((key) => <Bookshelf key={key} title={ShelfTypes[key]} bookshelf={listBookshelf[key]} onBookChange={() => onBookChange()} />)}
         <RoundButton onClick={() => navigate('/search')}><BsPlusLg /></RoundButton>
     </>)
 }
