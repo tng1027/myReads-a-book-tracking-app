@@ -16,10 +16,13 @@ export const SearchPage = ({ books, onModifyBookshelf }) => {
         const searchBook = async () => {
             try {
                 const searchResults = await BooksApi.search(searchValue);
-                setSearchBooks(!searchResults.error ? searchResults.map(sr => ({
-                    ...sr,
-                    shelf: !sr.shelf ? 'none' : sr.shelf
-                })) : []);
+                setSearchBooks(!searchResults.error ? searchResults.map(sr => {
+                    const foundBook = books.find(b => b.id === sr.id) ?? sr;
+                    return {
+                        ...foundBook,
+                        shelf: !foundBook.shelf ? 'none' : foundBook.shelf
+                    }
+                }) : []);
             } catch {
                 setSearchBooks([]);
             }
@@ -30,7 +33,7 @@ export const SearchPage = ({ books, onModifyBookshelf }) => {
         }, 300)
 
         return () => clearTimeout(timeout);
-    }, [searchValue]);
+    }, [books, searchValue]);
 
     return <>
         <div className="search-books-container">
