@@ -1,14 +1,10 @@
 import { RoundButton } from "./Core/Button";
-import * as BookApi from '../api/booksAPI';
 
-export const Book = ({ book, onChange }) => {
+export const Book = ({ book, onModifyBookshelf }) => {
     const onSelectChange = (shelf) => {
-        const updateBook = async () => {
-            await BookApi.update(book, shelf);
-            if (onChange) onChange();
+        if (onModifyBookshelf) {
+            onModifyBookshelf(book, shelf);
         }
-
-        updateBook();
     }
 
     return <div className="book">
@@ -19,6 +15,7 @@ export const Book = ({ book, onChange }) => {
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
                     <option value="read">Read</option>
+                    <option value="none">None</option>
                 </select>
             </RoundButton>
         </div>

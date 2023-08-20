@@ -6,19 +6,31 @@ import * as BooksApi from "../api/booksAPI";
 import { HyperlinkButton } from "../components/Core/Button";
 import { BookList } from "../components/BookList";
 
-export const SearchPage = () => {
+export const SearchPage = ({ books, onModifyBookshelf }) => {
     const navigate = useNavigate();
 
     const [searchValue, setSearchValue] = useState("");
-    const [books, setBooks] = useState([]);
+    const [searchBooks, setSearchBooks] = useState([]);
 
     useEffect(() => {
         const searchBook = async () => {
-            setBooks(await BooksApi.search(searchValue));
+            try {
+                const searchResults = await BooksApi.search(searchValue);
+                setSearchBooks(!searchResults.error ? searchResults.map(sr => ({
+                    ...sr,
+                    shelf: !sr.shelf ? 'none' : sr.shelf
+                })) : []);
+            } catch {
+                setSearchBooks([]);
+            }
         }
 
-        if (searchValue) searchBook();
-    }, [searchValue])
+        const timeout = setTimeout(() => {
+            searchBook()
+        }, 300)
+
+        return () => clearTimeout(timeout);
+    }, [searchValue]);
 
     return <>
         <div className="search-books-container">
@@ -26,7 +38,7 @@ export const SearchPage = () => {
             <input type="text" placeholder="Search by title, author, ISBN" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
         </div>
         <div className="search-books-results">
-            <BookList books={books} />
+            <BookList books={searchBooks} onModifyBookshelf={onModifyBookshelf} />
         </div>
     </>;
 }

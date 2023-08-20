@@ -1,9 +1,9 @@
 import { Book } from "./Book"
 
-export const BookList = ({ books, onChange }) => {
+export const BookList = ({ books, onModifyBookshelf }) => {
     return (
         <div className="books">
-            {books.map((book) => <Book onChange={onChange} key={`book-${book.id}`} book={book} />)}
+            {books.map((book) => <Book onModifyBookshelf={onModifyBookshelf} key={`book-${book.id}`} book={book} />)}
         </div>
     )
 }
