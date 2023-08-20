@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# MyReads - A Book Tracking Web App
+MyReads is created using React.js as a part of the [Udacity's React Nanodegree program](https://learn.udacity.com/nanodegrees/nd019).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
+A single-page app (navigation happens without the need to refresh pages), and it represents a virtual bookcase to store your books and track what you're reading.
 
-## Available Scripts
+User can manage books and separate into 3 shelves. MyReads supports 3 types of bookshelf:
+- Currently Reading
+- Want to Read
+- Read
 
-In the project directory, you can run:
+User can search book by title, author or ISBN
 
-### `npm start`
+## Development
+A static example of the CSS and HTML markup was provided, and a backend API to communicate with a Backend Server from Udacity for book information and long term storage.
+Then I added interactivity to the app by refactoring the static code into react components, following DOT (Do One Thing) rule.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend Server
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[`BooksAPI.js`](src/BooksAPI.js) contains following methods to perform necessary operations on the backend:
 
-### `npm test`
+* `getAll` To get all the books from the API
+* `update` Update shelf information of the book
+* `search` Search book in the database
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+Clone the repository, change directories, and use NPM to install the dependencies.
+- Clone this Git repo.
+- Run `npm install` or `yarn install` in the project directory to install dependencies.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Start
+- The project can be run with `npm start` or `yarn start`
+- Then it can be viewed in the browser at [http://localhost:3000](http://localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Important
+The backend API is built by Udacity and **only a fixed set of search terms are supported.** 
+Supported search terms can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the API.
